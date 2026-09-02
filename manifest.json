@@ -9,6 +9,14 @@
     "imageUrl": "https://raw.githubusercontent.com/ThuGie/jellyfin-plugin-jellylidarr/main/Jellyfin.Plugin.JellyLidarr.png?v=2",
     "versions": [
       {
+        "version": "1.0.0.5",
+        "changelog": "Fix settings loading in Jellyfin Web and rebuild the configuration page with native Jellyfin controls.",
+        "targetAbi": "10.11.11.0",
+        "sourceUrl": "https://github.com/ThuGie/jellyfin-plugin-jellylidarr/releases/download/v1.0.0.5/jellylidarr_1.0.0.5.zip",
+        "checksum": "UPDATED_BY_RELEASE_WORKFLOW",
+        "timestamp": "2026-09-03T02:00:00Z"
+      },
+      {
         "version": "1.0.0.4",
         "changelog": "Replace the plugin artwork with a crop-safe icon sized for Jellyfin catalog and dashboard displays.",
         "targetAbi": "10.11.11.0",

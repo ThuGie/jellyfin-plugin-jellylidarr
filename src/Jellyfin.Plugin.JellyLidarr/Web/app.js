@@ -17,7 +17,14 @@
     const request = { url: url(path, params), type: options?.method || 'GET', dataType: 'json', contentType: 'application/json' };
     if (options?.body) request.data = options.body;
     try {
-      if (window.ApiClient && ApiClient.ajax) return await ApiClient.ajax(request);
+      if (window.ApiClient && ApiClient.ajax) {
+        const response = await ApiClient.ajax(request);
+        if (response && typeof response.json === 'function') {
+          if (!response.ok) throw new Error(await response.text() || response.statusText || 'Request failed');
+          return response.status === 204 ? null : response.json();
+        }
+        return response;
+      }
       const response = await fetch(request.url, { method: request.type, headers: { 'Content-Type': 'application/json' }, body: request.data });
       if (!response.ok) throw new Error(await response.text());
       return response.status === 204 ? null : response.json();
