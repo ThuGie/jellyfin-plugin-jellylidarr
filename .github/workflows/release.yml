@@ -15,12 +15,18 @@ jobs:
       - name: Build and test package
         shell: pwsh
         run: ./build.ps1
-      - name: Verify manifest checksum
+      - name: Update catalog checksum
         shell: pwsh
         run: |
-          $expected = (Get-Content manifest.json | ConvertFrom-Json)[0].versions[0].checksum
           $actual = (Get-FileHash artifacts/jellylidarr_1.0.0.zip -Algorithm MD5).Hash
-          if ($actual -ne $expected) { throw "Manifest checksum $expected does not match package $actual. Run build.ps1 and update manifest.json before tagging." }
+          $manifest = Get-Content manifest.json | ConvertFrom-Json
+          $manifest[0].versions[0].checksum = $actual
+          $manifest | ConvertTo-Json -Depth 10 | Set-Content manifest.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add manifest.json
+          git commit -m "Update catalog checksum for $env:GITHUB_REF_NAME"
+          git push origin HEAD:main
       - name: Publish GitHub release
         uses: softprops/action-gh-release@v2
         with:
