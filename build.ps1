@@ -1,5 +1,6 @@
 param([string]$Configuration = "Release")
 $ErrorActionPreference = "Stop"
+$releaseVersion = "1.0.0.1"
 $projectRoot = $PSScriptRoot
 $artifactRoot = Join-Path $projectRoot "artifacts"
 $publishRoot = Join-Path $artifactRoot "publish"
@@ -13,10 +14,11 @@ if (-not $resolvedPackage.StartsWith($resolvedArtifacts, [StringComparison]::Ord
 Get-ChildItem -LiteralPath $packageRoot -Force | Remove-Item -Recurse -Force
 Copy-Item -LiteralPath (Join-Path $publishRoot "Jellyfin.Plugin.JellyLidarr.dll") -Destination $packageRoot
 Copy-Item -LiteralPath (Join-Path $publishRoot "Jellyfin.Plugin.JellyLidarr.deps.json") -Destination $packageRoot
+Copy-Item -LiteralPath (Join-Path $projectRoot "Jellyfin.Plugin.JellyLidarr.png") -Destination $packageRoot
 Copy-Item -LiteralPath (Join-Path $publishRoot "Microsoft.Data.Sqlite.dll") -Destination $packageRoot
 Copy-Item -Path (Join-Path $publishRoot "SQLitePCLRaw*.dll") -Destination $packageRoot
 Copy-Item -LiteralPath (Join-Path $publishRoot "runtimes") -Destination $packageRoot -Recurse
-$zip = Join-Path $artifactRoot "jellylidarr_1.0.0.zip"
+$zip = Join-Path $artifactRoot "jellylidarr_$releaseVersion.zip"
 if (Test-Path -LiteralPath $zip) { Remove-Item -LiteralPath $zip }
 Add-Type -AssemblyName System.IO.Compression
 $archive = [IO.Compression.ZipFile]::Open($zip, [IO.Compression.ZipArchiveMode]::Create)

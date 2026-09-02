@@ -1,5 +1,7 @@
 # JellyLidarr
 
+<p align="center"><img src="Jellyfin.Plugin.JellyLidarr.png" alt="JellyLidarr icon" width="256"></p>
+
 JellyLidarr is a single Jellyfin plugin for discovering music, requesting artists or albums through Lidarr, approving requests, and following them until they appear in Jellyfin.
 
 ## Requirements

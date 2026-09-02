@@ -18,7 +18,10 @@ jobs:
       - name: Update catalog checksum
         shell: pwsh
         run: |
-          $actual = (Get-FileHash artifacts/jellylidarr_1.0.0.zip -Algorithm MD5).Hash
+          $assets = @(Get-ChildItem artifacts/jellylidarr_*.zip)
+          if ($assets.Count -ne 1) { throw "Expected one release archive, found $($assets.Count)." }
+          $asset = $assets[0]
+          $actual = (Get-FileHash $asset.FullName -Algorithm MD5).Hash
           $manifest = Get-Content manifest.json | ConvertFrom-Json
           $manifest[0].versions[0].checksum = $actual
           $manifest | ConvertTo-Json -Depth 10 | Set-Content manifest.json
@@ -30,5 +33,5 @@ jobs:
       - name: Publish GitHub release
         uses: softprops/action-gh-release@v2
         with:
-          files: artifacts/jellylidarr_1.0.0.zip
+          files: artifacts/jellylidarr_*.zip
           generate_release_notes: true
