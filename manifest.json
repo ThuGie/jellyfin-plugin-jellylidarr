@@ -13,7 +13,7 @@
         "changelog": "Fix settings loading in Jellyfin Web and rebuild the configuration page with native Jellyfin controls.",
         "targetAbi": "10.11.11.0",
         "sourceUrl": "https://github.com/ThuGie/jellyfin-plugin-jellylidarr/releases/download/v1.0.0.5/jellylidarr_1.0.0.5.zip",
-        "checksum": "UPDATED_BY_RELEASE_WORKFLOW",
+        "checksum": "A21BA5A32249248F369AAD5A9AFCC1A2",
         "timestamp": "2026-09-03T02:00:00Z"
       },
       {
