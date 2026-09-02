@@ -3,14 +3,15 @@
     <TargetFramework>net9.0</TargetFramework>
     <AssemblyName>Jellyfin.Plugin.JellyLidarr</AssemblyName>
     <RootNamespace>Jellyfin.Plugin.JellyLidarr</RootNamespace>
-    <Version>1.0.0.2</Version>
+    <Version>1.0.0.3</Version>
+    <Authors>ThuGie</Authors>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <NoWarn>$(NoWarn);CS1591</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Jellyfin.Controller" Version="10.11.11" ExcludeAssets="runtime" />
     <PackageReference Include="Jellyfin.Model" Version="10.11.11" ExcludeAssets="runtime" />
-    <PackageReference Include="Microsoft.Data.Sqlite" Version="9.0.11" />
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="9.0.11" ExcludeAssets="runtime" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Web\**\*" />
