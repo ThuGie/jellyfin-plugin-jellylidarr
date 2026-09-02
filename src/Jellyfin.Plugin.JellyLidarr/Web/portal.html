@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Music Requests</title>
+  <link rel="stylesheet" href="configurationpage?name=jellylidarr-style">
+</head>
+<body>
+<div id="jellylidarr" class="jl-page page type-interior" data-role="page">
+  <main class="jl-shell">
+    <header class="jl-header">
+      <div><p class="jl-kicker">JELLYLIDARR</p><h1>Find your next listen.</h1><p>Search your library and request missing music.</p></div>
+      <div class="jl-actions"><button id="jl-admin" class="jl-ghost" type="button" hidden>Settings</button><button id="jl-refresh" class="jl-ghost" type="button">Refresh</button></div>
+    </header>
+    <nav class="jl-tabs" aria-label="Music requests">
+      <button class="active" data-tab="discover">Discover</button><button data-tab="mine">My requests</button><button data-tab="approval" id="jl-approval-tab" hidden>Approvals</button>
+    </nav>
+    <section id="jl-discover" class="jl-panel">
+      <form id="jl-search-form" class="jl-search"><label class="sr-only" for="jl-term">Search music</label><input id="jl-term" minlength="2" required placeholder="Search artists or albums…" autocomplete="off"><select id="jl-kind" aria-label="Result type"><option value="">Everything</option><option value="Artist">Artists</option><option value="Album">Albums</option></select><button type="submit">Search</button></form>
+      <p id="jl-search-status" class="jl-status" role="status">Search Lidarr’s catalog and your Jellyfin library.</p><div id="jl-results" class="jl-grid"></div>
+    </section>
+    <section id="jl-mine" class="jl-panel" hidden><h2>My requests</h2><div id="jl-mine-list" class="jl-list"></div></section>
+    <section id="jl-approval" class="jl-panel" hidden><h2>Approval queue</h2><div id="jl-approval-list" class="jl-list"></div></section>
+  </main>
+  <dialog id="jl-confirm"><form method="dialog"><h2>Request artist?</h2><p id="jl-confirm-text"></p><div class="jl-actions"><button value="cancel" class="jl-ghost">Cancel</button><button id="jl-confirm-submit" value="confirm">Request artist</button></div></form></dialog>
+  <div id="jl-toast" role="status" aria-live="polite"></div>
+  <script src="configurationpage?name=jellylidarr-app"></script>
+</div>
+</body>
+</html>

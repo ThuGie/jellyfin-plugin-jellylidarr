@@ -1,0 +1,28 @@
+name: release
+on:
+  push:
+    tags: ['v*']
+permissions:
+  contents: write
+jobs:
+  release:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 9.0.x
+      - name: Build and test package
+        shell: pwsh
+        run: ./build.ps1
+      - name: Verify manifest checksum
+        shell: pwsh
+        run: |
+          $expected = (Get-Content manifest.json | ConvertFrom-Json)[0].versions[0].checksum
+          $actual = (Get-FileHash artifacts/jellylidarr_1.0.0.zip -Algorithm MD5).Hash
+          if ($actual -ne $expected) { throw "Manifest checksum $expected does not match package $actual. Run build.ps1 and update manifest.json before tagging." }
+      - name: Publish GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: artifacts/jellylidarr_1.0.0.zip
+          generate_release_notes: true
