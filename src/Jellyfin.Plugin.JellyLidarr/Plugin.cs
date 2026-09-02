@@ -43,7 +43,15 @@ public sealed class PluginConfiguration : BasePluginConfiguration
     public string MonitorMode { get; set; } = "all";
     public int PollingSeconds { get; set; } = 60;
     public int ImportTimeoutHours { get; set; } = 24;
-    public Dictionary<string, UserRole> UserRoles { get; set; } = new(StringComparer.OrdinalIgnoreCase);
+    public UserRoleAssignment[] UserRoles { get; set; } = Array.Empty<UserRoleAssignment>();
+
+    public UserRole RoleFor(string userId) => UserRoles.FirstOrDefault(x => string.Equals(x.UserId, userId, StringComparison.OrdinalIgnoreCase))?.Role ?? UserRole.Viewer;
+}
+
+public sealed class UserRoleAssignment
+{
+    public string UserId { get; set; } = string.Empty;
+    public UserRole Role { get; set; } = UserRole.Viewer;
 }
 
 [JsonConverter(typeof(JsonStringEnumConverter))]

@@ -19,7 +19,7 @@ public sealed class JellyfinUserContext(IHttpContextAccessor context, IUserManag
         if (!Guid.TryParse(raw, out var id)) throw new UnauthorizedAccessException();
         var user = users.GetUserById(id) ?? throw new UnauthorizedAccessException();
         var admin = user.HasPermission(PermissionKind.IsAdministrator);
-        var role = admin ? UserRole.Approver : Plugin.Instance?.Configuration.UserRoles.GetValueOrDefault(id.ToString(), UserRole.Viewer) ?? UserRole.Viewer;
+        var role = admin ? UserRole.Approver : Plugin.Instance?.Configuration.RoleFor(id.ToString()) ?? UserRole.Viewer;
         return new(id, user.Username, role, admin);
     }
 }

@@ -1,4 +1,5 @@
 using Xunit;
+using System.Xml.Serialization;
 
 namespace Jellyfin.Plugin.JellyLidarr.Tests;
 
@@ -25,6 +26,21 @@ public sealed class RequestRulesTests
         Assert.False(RequestRules.CanApprove(User(UserRole.TrustedRequester)));
         Assert.True(RequestRules.CanApprove(User(UserRole.Approver)));
         Assert.True(RequestRules.CanApprove(User(UserRole.Viewer, true)));
+    }
+
+    [Fact]
+    public void Plugin_configuration_is_xml_serializable()
+    {
+        var expected = new PluginConfiguration
+        {
+            UserRoles = [new UserRoleAssignment { UserId = "user-1", Role = UserRole.Requester }]
+        };
+        var serializer = new XmlSerializer(typeof(PluginConfiguration));
+        using var stream = new MemoryStream();
+        serializer.Serialize(stream, expected);
+        stream.Position = 0;
+        var actual = Assert.IsType<PluginConfiguration>(serializer.Deserialize(stream));
+        Assert.Equal(UserRole.Requester, actual.RoleFor("USER-1"));
     }
 
     private static CurrentUser User(UserRole role, bool admin = false) => new(Guid.NewGuid(), "test", role, admin);

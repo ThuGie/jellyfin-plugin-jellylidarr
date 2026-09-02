@@ -80,7 +80,8 @@ public sealed class JellyLidarrSettingsController(ILidarrClient lidarr, IUserCon
     public ActionResult<ConfigurationDto> Get()
     {
         if (!users.Get().IsAdministrator) return Forbid(); var c = Plugin.Instance!.Configuration;
-        return Ok(new ConfigurationDto(c.LidarrUrl, null, !string.IsNullOrEmpty(c.LidarrApiKey), c.RootFolderId, c.QualityProfileId, c.MetadataProfileId, c.MonitorMode, c.PollingSeconds, c.ImportTimeoutHours, c.UserRoles));
+        return Ok(new ConfigurationDto(c.LidarrUrl, null, !string.IsNullOrEmpty(c.LidarrApiKey), c.RootFolderId, c.QualityProfileId, c.MetadataProfileId, c.MonitorMode, c.PollingSeconds, c.ImportTimeoutHours,
+            c.UserRoles.ToDictionary(x => x.UserId, x => x.Role, StringComparer.OrdinalIgnoreCase)));
     }
 
     [HttpPut]
@@ -96,7 +97,8 @@ public sealed class JellyLidarrSettingsController(ILidarrClient lidarr, IUserCon
         catch (Exception ex) when (ex is HttpRequestException or InvalidOperationException)
         { c.LidarrUrl = oldUrl; c.LidarrApiKey = oldKey; return BadRequest($"Lidarr validation failed: {ex.Message}"); }
         c.RootFolderId = input.RootFolderId; c.QualityProfileId = input.QualityProfileId; c.MetadataProfileId = input.MetadataProfileId;
-        c.MonitorMode = input.MonitorMode; c.PollingSeconds = input.PollingSeconds; c.ImportTimeoutHours = input.ImportTimeoutHours; c.UserRoles = input.UserRoles;
+        c.MonitorMode = input.MonitorMode; c.PollingSeconds = input.PollingSeconds; c.ImportTimeoutHours = input.ImportTimeoutHours;
+        c.UserRoles = input.UserRoles.Select(x => new UserRoleAssignment { UserId = x.Key, Role = x.Value }).ToArray();
         Plugin.Instance.SaveConfiguration();
         return NoContent();
     }
