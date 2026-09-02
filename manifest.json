@@ -4,19 +4,19 @@
     "name": "JellyLidarr",
     "description": "Discover and request music from Lidarr inside Jellyfin.",
     "overview": "Music requests, approvals, download progress, and library availability.",
-  "owner": "ThuGie",
-  "category": "General",
-  "imageUrl": "https://raw.githubusercontent.com/ThuGie/jellyfin-plugin-jellylidarr/main/Jellyfin.Plugin.JellyLidarr.png",
-  "versions": [
-    {
-      "version": "1.0.0.3",
-      "changelog": "Fix Synology startup by removing platform-native DLLs; add catalog artwork and ThuGie developer metadata.",
-      "targetAbi": "10.11.11.0",
-      "sourceUrl": "https://github.com/ThuGie/jellyfin-plugin-jellylidarr/releases/download/v1.0.0.3/jellylidarr_1.0.0.3.zip",
-      "checksum": "UPDATED_BY_RELEASE_WORKFLOW",
-      "timestamp": "2026-09-03T01:15:00Z"
-    },
-    {
+    "owner": "ThuGie",
+    "category": "General",
+    "imageUrl": "https://raw.githubusercontent.com/ThuGie/jellyfin-plugin-jellylidarr/main/Jellyfin.Plugin.JellyLidarr.png",
+    "versions": [
+      {
+        "version": "1.0.0.3",
+        "changelog": "Fix Synology startup by removing platform-native DLLs; add catalog artwork and ThuGie developer metadata.",
+        "targetAbi": "10.11.11.0",
+        "sourceUrl": "https://github.com/ThuGie/jellyfin-plugin-jellylidarr/releases/download/v1.0.0.3/jellylidarr_1.0.0.3.zip",
+        "checksum": "B4B29875B5A52D1B0272D6AF4D63FCA7",
+        "timestamp": "2026-09-03T01:15:00Z"
+      },
+      {
         "version": "1.0.0.2",
         "changelog": "Fix Jellyfin dashboard settings registration and add a stable Music Requests portal link.",
         "targetAbi": "10.11.11.0",
