@@ -69,7 +69,7 @@
   }
   root.querySelectorAll('[data-tab]').forEach(button => button.onclick = async () => { root.querySelectorAll('[data-tab]').forEach(x => x.classList.toggle('active', x === button)); root.querySelectorAll('.jl-panel').forEach(x => x.hidden = x.id !== `jl-${button.dataset.tab}`); if (button.dataset.tab !== 'discover') await loadRequests(); });
   $('jl-search-form').onsubmit = search; $('jl-refresh').onclick = () => loadRequests().then(() => toast('Statuses refreshed'));
-  $('jl-admin').onclick = () => window.Dashboard?.navigate ? Dashboard.navigate('configurationpage?name=jellylidarr-admin') : (location.href = 'configurationpage?name=jellylidarr-admin');
+  $('jl-admin').onclick = () => window.Dashboard?.navigate ? Dashboard.navigate('configurationpage?name=JellyLidarr') : (location.href = 'configurationpage?name=JellyLidarr');
   $('jl-confirm').addEventListener('close', () => { if ($('jl-confirm').returnValue === 'confirm' && pendingArtist) submitRequest(pendingArtist.item, pendingArtist.button); pendingArtist = null; });
   api('me').then(user => { me = user; if (user.isAdministrator || user.role === 'Approver') $('jl-approval-tab').hidden = false; if (user.isAdministrator) $('jl-admin').hidden = false; }).catch(e => toast(e.message));
   const timer = setInterval(() => { if (!document.hidden) loadRequests().catch(() => {}); }, 15000); window.addEventListener('beforeunload', () => clearInterval(timer));

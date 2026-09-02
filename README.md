@@ -41,7 +41,11 @@ The catalog method above also works with the native SynoCommunity Jellyfin packa
 
 Then make sure the extracted folder is readable by the Jellyfin package account and start Jellyfin again in Package Center. The path is Synology's stable package-data link; its underlying volume is normally `/volumeN/@appdata/jellyfin/data/plugins/JellyLidarr`. Do not install the files under `/var/packages/jellyfin/target`, because package upgrades can replace that directory.
 
-The plugin adds **Music Requests** to Jellyfin Web. Native television and mobile clients do not render server-plugin pages; open the same Jellyfin server in a browser to request music.
+After installation, administrators can open **Dashboard → JellyLidarr** to configure the plugin. The settings page contains an **Open Music Requests** link. The portal also has this stable Jellyfin Web route:
+
+`/web/#/configurationpage?name=JellyLidarrPortal`
+
+Jellyfin 10.11's server-plugin API can add pages to the administrator Dashboard, but cannot inject an entry into the normal user hamburger menu. Ordinary users can bookmark the portal URL in Jellyfin Web. Native television and mobile clients do not render server-plugin pages.
 
 ## Upgrade and rollback
 

@@ -18,8 +18,16 @@ public sealed class Plugin : BasePlugin<PluginConfiguration>, IHasWebPages
 
     public IEnumerable<PluginPageInfo> GetPages()
     {
-        yield return new PluginPageInfo { Name = "jellylidarr", EmbeddedResourcePath = $"{GetType().Namespace}.Web.portal.html", EnableInMainMenu = true, DisplayName = "Music Requests" };
-        yield return new PluginPageInfo { Name = "jellylidarr-admin", EmbeddedResourcePath = $"{GetType().Namespace}.Web.admin.html", EnableInMainMenu = false };
+        yield return new PluginPageInfo
+        {
+            Name = Name,
+            DisplayName = "JellyLidarr",
+            EmbeddedResourcePath = $"{GetType().Namespace}.Web.admin.html",
+            EnableInMainMenu = true,
+            MenuSection = "server",
+            MenuIcon = "library_music"
+        };
+        yield return new PluginPageInfo { Name = "JellyLidarrPortal", EmbeddedResourcePath = $"{GetType().Namespace}.Web.portal.html" };
         yield return new PluginPageInfo { Name = "jellylidarr-app", EmbeddedResourcePath = $"{GetType().Namespace}.Web.app.js" };
         yield return new PluginPageInfo { Name = "jellylidarr-style", EmbeddedResourcePath = $"{GetType().Namespace}.Web.style.css" };
     }
