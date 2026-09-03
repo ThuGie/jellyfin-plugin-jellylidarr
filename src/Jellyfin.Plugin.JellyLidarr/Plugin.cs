@@ -30,6 +30,7 @@ public sealed class Plugin : BasePlugin<PluginConfiguration>, IHasWebPages
         yield return new PluginPageInfo { Name = "JellyLidarrPortal", EmbeddedResourcePath = $"{GetType().Namespace}.Web.portal.html" };
         yield return new PluginPageInfo { Name = "jellylidarr-app", EmbeddedResourcePath = $"{GetType().Namespace}.Web.app.js" };
         yield return new PluginPageInfo { Name = "jellylidarr-style", EmbeddedResourcePath = $"{GetType().Namespace}.Web.style.css" };
+        yield return new PluginPageInfo { Name = "jellylidarr-admin-style", EmbeddedResourcePath = $"{GetType().Namespace}.Web.admin.css" };
     }
 }
 

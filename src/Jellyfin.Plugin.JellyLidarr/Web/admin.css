@@ -1,0 +1,13 @@
+#jellylidarr-config .content-primary{max-width:960px}
+#jellylidarr-config .verticalSection{box-sizing:border-box;margin:0 0 1.25rem;padding:1.35rem 1.5rem;border:1px solid rgba(255,255,255,.12);border-radius:12px;background:rgba(22,22,22,.94);box-shadow:0 6px 22px rgba(0,0,0,.22)}
+#jellylidarr-config .verticalSection:first-child{background:linear-gradient(120deg,color-mix(in srgb,var(--primary-accent-color,#00a4dc) 18%,#161616),#161616 60%)}
+#jellylidarr-config .sectionTitle{display:flex;align-items:center;gap:.55rem;margin:0 0 1rem;font-size:1.25rem}
+#jellylidarr-config .sectionTitle:before{font-family:'Material Icons';font-size:1.3em;color:var(--primary-accent-color,#00a4dc)}
+#jellylidarr-config .verticalSection:nth-child(1) .sectionTitle:before{content:'library_music'}
+#jellylidarr-config .verticalSection:nth-child(2) .sectionTitle:before{content:'dns'}
+#jellylidarr-config .verticalSection:nth-child(3) .sectionTitle:before{content:'tune'}
+#jellylidarr-config .verticalSection:nth-child(4) .sectionTitle:before{content:'group'}
+#jellylidarr-config .jl-open{max-width:260px;margin-top:.5rem}
+#jellylidarr-config .jl-status{min-height:1.4rem;padding:.75rem 0;text-align:center}
+#jellylidarr-config .jl-connect{margin-top:.75rem}
+@media(min-width:800px){#jellylidarr-config .jl-form{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}#jellylidarr-config .jl-form>.verticalSection{margin:0}#jellylidarr-config .jl-form>.verticalSection:nth-child(3),#jellylidarr-config .jl-form>.jl-save,#jellylidarr-config .jl-form>.jl-status{grid-column:1/-1}}

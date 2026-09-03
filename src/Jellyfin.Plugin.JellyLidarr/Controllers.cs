@@ -100,7 +100,7 @@ public sealed class JellyLidarrSettingsController(ILidarrClient lidarr, IUserCon
         c.MonitorMode = input.MonitorMode; c.PollingSeconds = input.PollingSeconds; c.ImportTimeoutHours = input.ImportTimeoutHours;
         c.UserRoles = input.UserRoles.Select(x => new UserRoleAssignment { UserId = x.Key, Role = x.Value }).ToArray();
         Plugin.Instance.SaveConfiguration();
-        return NoContent();
+        return Ok(new { success = true });
     }
 
     [HttpGet("options")]
