@@ -1,6 +1,6 @@
 param([string]$Configuration = "Release")
 $ErrorActionPreference = "Stop"
-$releaseVersion = "1.0.0.8"
+$releaseVersion = "1.0.0.9"
 $projectRoot = $PSScriptRoot
 $artifactRoot = Join-Path $projectRoot "artifacts"
 $publishRoot = Join-Path $artifactRoot "publish"

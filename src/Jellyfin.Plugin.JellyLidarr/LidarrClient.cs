@@ -132,7 +132,7 @@ public sealed class LidarrClient(HttpClient http) : ILidarrClient
     private static void Copy(JsonElement source, IDictionary<string,object?> target, params string[] names) { foreach (var name in names) if (source.TryGetProperty(name, out var value)) target[name] = value.Clone(); }
     private HttpRequestMessage Request(HttpMethod method, string path) { var cfg = EnsureConfigured(); var req = new HttpRequestMessage(method, new Uri(new Uri(cfg.LidarrUrl.TrimEnd('/') + "/"), path)); req.Headers.Add("X-Api-Key", cfg.LidarrApiKey); return req; }
     private static PluginConfiguration EnsureConfigured() { var cfg = Plugin.Instance?.Configuration ?? throw new InvalidOperationException("Plugin is unavailable."); if (!Uri.TryCreate(cfg.LidarrUrl, UriKind.Absolute, out _) || string.IsNullOrWhiteSpace(cfg.LidarrApiKey)) throw new InvalidOperationException("Lidarr is not configured."); return cfg; }
-    private static string? String(JsonElement x, string name) => x.TryGetProperty(name, out var v) && v.ValueKind == JsonValueKind.String ? v.GetString() : null;
-    private static int Int(JsonElement x, string name) => x.TryGetProperty(name, out var v) && v.TryGetInt32(out var n) ? n : 0;
-    private static string? Image(JsonElement x) => x.TryGetProperty("images", out var a) ? a.EnumerateArray().FirstOrDefault(i => String(i,"coverType") is "poster" or "cover").TryGetProperty("remoteUrl", out var u) ? u.GetString() : null : null;
+    private static string? String(JsonElement x, string name) => x.ValueKind == JsonValueKind.Object && x.TryGetProperty(name, out var v) && v.ValueKind == JsonValueKind.String ? v.GetString() : null;
+    private static int Int(JsonElement x, string name) => x.ValueKind == JsonValueKind.Object && x.TryGetProperty(name, out var v) && v.ValueKind == JsonValueKind.Number && v.TryGetInt32(out var n) ? n : 0;
+    private static string? Image(JsonElement x) => LidarrArtwork.Read(x);
 }

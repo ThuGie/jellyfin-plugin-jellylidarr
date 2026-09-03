@@ -43,7 +43,7 @@
     if (item.imageUrl) cover.style.backgroundImage = `url("${encodeURI(item.imageUrl).replaceAll('"', '%22')}")`;
     const body = el('div', 'jl-body'); body.append(el('h3', '', item.name), el('p', '', item.artistName || item.kind));
     const meta = el('div', 'jl-meta'); const pill = el('span', 'jl-pill ' + (item.available ? 'available' : item.requestState === 'Failed' ? 'failed' : ''), status(item)); meta.append(pill);
-    if (item.available && item.jellyfinItemId) { const open = el('button', 'jl-ghost', 'Open'); open.onclick = () => location.hash = `#!/details?id=${item.jellyfinItemId}`; meta.append(open); }
+    if (item.available && item.jellyfinItemId) { const open = el('button', 'jl-ghost', 'Open'); open.onclick = () => { document.getElementById('jl-navigation-dialog')?.close(); location.hash = `#/details?id=${item.jellyfinItemId}`; }; meta.append(open); }
     if ((!item.available || item.partial) && !item.requestId && canRequest()) { const request = el('button', '', item.partial ? 'Request missing' : 'Request'); request.onclick = () => requestItem(item, request); meta.append(request); }
     body.append(meta); card.append(cover, body); return card;
   }
@@ -92,7 +92,7 @@
   }
   root.querySelectorAll('[data-tab]').forEach(button => button.onclick = async () => { root.querySelectorAll('[data-tab]').forEach(x => {x.classList.toggle('active', x === button);x.setAttribute('aria-pressed',String(x===button));}); root.querySelectorAll('.jl-panel').forEach(x => x.hidden = x.id !== `jl-${button.dataset.tab}`); if (button.dataset.tab !== 'discover') await loadRequests().catch(e=>toast(e.message)); });
   $('jl-search-form').onsubmit = search; $('jl-refresh').onclick = () => loadRequests().then(() => toast('Statuses refreshed')).catch(e=>toast(e.message));
-  $('jl-admin').onclick = () => window.Dashboard?.navigate ? Dashboard.navigate('configurationpage?name=JellyLidarr') : (location.href = 'configurationpage?name=JellyLidarr');
+  $('jl-admin').onclick = () => { document.getElementById('jl-navigation-dialog')?.close(); if(window.Dashboard?.navigate) Dashboard.navigate('configurationpage?name=JellyLidarr'); else location.href='configurationpage?name=JellyLidarr'; };
   $('jl-confirm').addEventListener('close', () => { if ($('jl-confirm').returnValue === 'confirm' && pendingArtist) submitRequest(pendingArtist.item, pendingArtist.button); pendingArtist = null; });
   api('me').then(async user => { me = user; if (user.isAdministrator || user.role === 'Approver') $('jl-approval-tab').hidden = false; if (user.isAdministrator) $('jl-admin').hidden = false; await loadRequests(); }).catch(e => toast(e.message));
   let timer;

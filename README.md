@@ -12,7 +12,7 @@ JellyLidarr is a single Jellyfin plugin for discovering music, requesting artist
 
 ## Build
 
-Run `./build.ps1`. The tested plugin archive is created at `artifacts/jellylidarr_1.0.0.zip`.
+Run `./build.ps1`. The tested plugin archive is created at `artifacts/jellylidarr_<version>.zip`.
 
 ## Install
 
@@ -45,7 +45,9 @@ After installation, administrators can open **Dashboard → JellyLidarr** to con
 
 `/web/#/configurationpage?name=JellyLidarrPortal`
 
-Jellyfin 10.11's server-plugin API can add pages to the administrator Dashboard, but cannot inject an entry into the normal user hamburger menu. Ordinary users can bookmark the portal URL in Jellyfin Web. Native television and mobile clients do not render server-plugin pages.
+Starting with 1.0.0.9, signed-in users have a **Music Requests** button in the Jellyfin Web header. It opens music discovery and request history directly, without going through administrator settings. Users default to Viewer; grant Requester or Trusted requester access in JellyLidarr settings to allow submissions.
+
+The plugin adds this entry to the server-hosted Web shell at response time. It does not modify Synology web files or require another plugin. After upgrading, restart Jellyfin and fully reload Jellyfin Web. Separately hosted Web clients and native television/mobile interfaces are not injected.
 
 ## Upgrade and rollback
 

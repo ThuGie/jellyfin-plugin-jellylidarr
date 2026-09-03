@@ -20,7 +20,7 @@
     return response;
   }
   function fillOptions(id, items, selected) {
-    if (!Array.isArray(items)) throw new Error('Invalid options response. Check that JellyLidarr 1.0.0.8 is loaded after restarting Jellyfin.');
+    if (!Array.isArray(items)) throw new Error('Invalid options response. Check that JellyLidarr 1.0.0.9 is loaded after restarting Jellyfin.');
     const select = $(id);
     select.replaceChildren(new Option(items.length ? 'Select an option' : 'No options configured in Lidarr', ''));
     items.forEach(item => {
@@ -94,7 +94,7 @@
   });
   run(async()=>{
     const [settings,users]=await Promise.all([call(''),call('/users')]);
-    if(typeof settings?.lidarrUrl!=='string') throw new Error('Invalid settings response. Restart Jellyfin to load JellyLidarr 1.0.0.8.');
+    if(typeof settings?.lidarrUrl!=='string') throw new Error('Invalid settings response. Restart Jellyfin to load JellyLidarr 1.0.0.9.');
     config=settings;
     $('jla-url').value=config.lidarrUrl; $('jla-poll').value=config.pollingSeconds; $('jla-timeout').value=config.importTimeoutHours;
     $('jla-monitor').value=config.monitorMode; if(config.hasApiKey) $('jla-key').placeholder='Saved — leave blank to keep it';

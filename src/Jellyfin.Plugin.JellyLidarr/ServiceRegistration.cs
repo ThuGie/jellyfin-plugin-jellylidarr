@@ -10,6 +10,7 @@ public sealed class ServiceRegistration : IPluginServiceRegistrator
     public void RegisterServices(IServiceCollection services, IServerApplicationHost applicationHost)
     {
         services.AddHttpClient<ILidarrClient, LidarrClient>();
+        services.AddSingleton<Microsoft.AspNetCore.Hosting.IStartupFilter, NavigationStartupFilter>();
         services.AddSingleton<RequestRepository>();
         services.AddSingleton<IAvailabilityService, JellyfinAvailabilityService>();
         services.AddSingleton<IRequestService, RequestService>();
