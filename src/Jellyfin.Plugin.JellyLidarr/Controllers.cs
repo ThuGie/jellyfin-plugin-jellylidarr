@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Jellyfin.Data;
 using Jellyfin.Database.Implementations.Enums;
+using System.Text.Json.Serialization;
 
 namespace Jellyfin.Plugin.JellyLidarr;
 
@@ -70,8 +71,17 @@ public sealed class JellyLidarrController(ILidarrClient lidarr, IAvailabilitySer
     }
 }
 
-public sealed record ConfigurationDto(string LidarrUrl, string? LidarrApiKey, bool HasApiKey, int RootFolderId, int QualityProfileId,
-    int MetadataProfileId, string MonitorMode, int PollingSeconds, int ImportTimeoutHours, Dictionary<string, UserRole> UserRoles);
+public sealed record ConfigurationDto(
+    [property: JsonPropertyName("lidarrUrl")] string LidarrUrl,
+    [property: JsonPropertyName("lidarrApiKey")] string? LidarrApiKey,
+    [property: JsonPropertyName("hasApiKey")] bool HasApiKey,
+    [property: JsonPropertyName("rootFolderId")] int RootFolderId,
+    [property: JsonPropertyName("qualityProfileId")] int QualityProfileId,
+    [property: JsonPropertyName("metadataProfileId")] int MetadataProfileId,
+    [property: JsonPropertyName("monitorMode")] string MonitorMode,
+    [property: JsonPropertyName("pollingSeconds")] int PollingSeconds,
+    [property: JsonPropertyName("importTimeoutHours")] int ImportTimeoutHours,
+    [property: JsonPropertyName("userRoles")] Dictionary<string, UserRole> UserRoles);
 
 [ApiController, Authorize, Route("JellyLidarr/settings")]
 public sealed class JellyLidarrSettingsController(ILidarrClient lidarr, IUserContext users, IUserManager userManager) : ControllerBase
@@ -111,6 +121,6 @@ public sealed class JellyLidarrSettingsController(ILidarrClient lidarr, IUserCon
     public IActionResult Users()
     {
         if (!users.Get().IsAdministrator) return Forbid();
-        return Ok(userManager.GetUsers().Select(x => new { x.Id, Name = x.Username, IsAdministrator = x.HasPermission(PermissionKind.IsAdministrator) }));
+        return Ok(userManager.GetUsers().Select(x => new CurrentUser(x.Id, x.Username, Plugin.Instance!.Configuration.RoleFor(x.Id.ToString()), x.HasPermission(PermissionKind.IsAdministrator))));
     }
 }

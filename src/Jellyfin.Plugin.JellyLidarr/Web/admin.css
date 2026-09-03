@@ -1,13 +1,24 @@
-#jellylidarr-config .content-primary{max-width:960px}
-#jellylidarr-config .verticalSection{box-sizing:border-box;margin:0 0 1.25rem;padding:1.35rem 1.5rem;border:1px solid rgba(255,255,255,.12);border-radius:12px;background:rgba(22,22,22,.94);box-shadow:0 6px 22px rgba(0,0,0,.22)}
-#jellylidarr-config .verticalSection:first-child{background:linear-gradient(120deg,color-mix(in srgb,var(--primary-accent-color,#00a4dc) 18%,#161616),#161616 60%)}
-#jellylidarr-config .sectionTitle{display:flex;align-items:center;gap:.55rem;margin:0 0 1rem;font-size:1.25rem}
-#jellylidarr-config .sectionTitle:before{font-family:'Material Icons';font-size:1.3em;color:var(--primary-accent-color,#00a4dc)}
-#jellylidarr-config .verticalSection:nth-child(1) .sectionTitle:before{content:'library_music'}
-#jellylidarr-config .verticalSection:nth-child(2) .sectionTitle:before{content:'dns'}
-#jellylidarr-config .verticalSection:nth-child(3) .sectionTitle:before{content:'tune'}
-#jellylidarr-config .verticalSection:nth-child(4) .sectionTitle:before{content:'group'}
-#jellylidarr-config .jl-open{max-width:260px;margin-top:.5rem}
-#jellylidarr-config .jl-status{min-height:1.4rem;padding:.75rem 0;text-align:center}
-#jellylidarr-config .jl-connect{margin-top:.75rem}
-@media(min-width:800px){#jellylidarr-config .jl-form{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}#jellylidarr-config .jl-form>.verticalSection{margin:0}#jellylidarr-config .jl-form>.verticalSection:nth-child(3),#jellylidarr-config .jl-form>.jl-save,#jellylidarr-config .jl-form>.jl-status{grid-column:1/-1}}
+#jellylidarr-config{--jla-accent:var(--primary-accent-color,#00a4dc);--jla-border:#ffffff18;--jla-muted:#a7adb6;color:#edf0f4;font:15px/1.5 system-ui,sans-serif}
+#jellylidarr-config *{box-sizing:border-box}#jellylidarr-config [hidden]{display:none!important}
+#jellylidarr-config .jla-shell{max-width:1120px;margin:0 auto;padding:32px 28px 60px}
+#jellylidarr-config .jla-header{display:flex;justify-content:space-between;align-items:center;gap:24px;margin-bottom:24px}
+#jellylidarr-config h1{font-size:30px;font-weight:600;margin:5px 0}#jellylidarr-config h1 small{font-size:12px;color:var(--jla-muted);font-weight:400;border:1px solid var(--jla-border);padding:3px 7px;border-radius:4px;vertical-align:middle}
+#jellylidarr-config .jla-eyebrow{font-size:10px;letter-spacing:1.6px;color:var(--jla-accent);font-weight:700}
+#jellylidarr-config p{margin:0;color:var(--jla-muted)}#jellylidarr-config h2{font-size:17px;font-weight:600;margin:0}
+#jellylidarr-config button{font:inherit;font-size:13px;font-weight:600;cursor:pointer;border-radius:6px;border:1px solid transparent;background:var(--jla-accent);color:white;padding:11px 17px}
+#jellylidarr-config button:hover{filter:brightness(1.12)}#jellylidarr-config button:disabled{opacity:.45;cursor:default}
+#jellylidarr-config button.jla-secondary{background:#ffffff07;border-color:var(--jla-border)}
+#jellylidarr-config .jla-notice{padding:13px 16px;border:1px solid var(--jla-border);border-left:3px solid var(--jla-accent);background:#ffffff05;border-radius:6px;font-size:13px;margin-bottom:18px}
+#jellylidarr-config .jla-notice[data-error="true"]{border-left-color:#f07878;color:#ffb4b4}
+#jellylidarr-config .jla-tabs{display:flex;gap:8px;padding-bottom:18px}#jellylidarr-config .jla-tabs button{background:transparent;border:1px solid var(--jla-border);color:var(--jla-muted);border-radius:30px}#jellylidarr-config .jla-tabs button[aria-pressed="true"]{border-color:var(--jla-accent);color:var(--jla-accent);background:color-mix(in srgb,var(--jla-accent) 10%,transparent)}
+#jellylidarr-config .jla-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}#jellylidarr-config .jla-wide{grid-column:1/-1}
+#jellylidarr-config .jla-card{background:#16191e;border:1px solid var(--jla-border);border-radius:10px;overflow:hidden;box-shadow:0 5px 18px #0002}
+#jellylidarr-config .jla-card>header{padding:19px 22px;border-bottom:1px solid var(--jla-border);display:flex;align-items:center;gap:14px;background:#ffffff03}#jellylidarr-config .jla-card>header p{font-size:12px;margin-top:3px}#jellylidarr-config .jla-number{color:var(--jla-accent);font-size:12px;letter-spacing:1px;font-weight:700}
+#jellylidarr-config .jla-fields{padding:22px;display:flex;flex-direction:column;gap:10px}#jellylidarr-config label{display:block;font-size:13px;font-weight:500;margin-top:6px}
+#jellylidarr-config input,#jellylidarr-config select{width:100%;min-width:0;min-height:42px;padding:10px 12px;border-radius:5px;border:1px solid #ffffff28;background:#101318;color:#edf0f4;font:inherit;font-size:14px;color-scheme:dark}
+#jellylidarr-config input:focus,#jellylidarr-config select:focus{outline:2px solid var(--jla-accent);outline-offset:1px}#jellylidarr-config select:disabled{opacity:.5}#jellylidarr-config .jla-help{font-size:12px;line-height:1.55;margin:0 0 8px}
+#jellylidarr-config .jla-inline-fields{display:grid;grid-template-columns:1fr 1fr;gap:24px}#jellylidarr-config .jla-inline-fields input{margin-top:8px}
+#jellylidarr-config .jla-role-guide{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px;font-size:12px;color:var(--jla-muted)}#jellylidarr-config .jla-role-guide b{display:block;color:#e3e7ed;font-size:13px}
+#jellylidarr-config .jla-user{display:grid;grid-template-columns:1fr 230px;align-items:center;gap:20px;padding:14px 0;border-top:1px solid var(--jla-border)}#jellylidarr-config .jla-user label{margin:0}
+#jellylidarr-config .jla-footer{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-top:22px;border-top:1px solid var(--jla-border);padding-top:20px}#jellylidarr-config .jla-footer span{color:var(--jla-muted);font-size:12px}
+@media(max-width:760px){#jellylidarr-config .jla-shell{padding:20px 14px 40px}#jellylidarr-config .jla-grid,#jellylidarr-config .jla-inline-fields{grid-template-columns:1fr}#jellylidarr-config .jla-header{align-items:start;flex-direction:column;gap:12px}#jellylidarr-config .jla-role-guide{grid-template-columns:1fr 1fr}#jellylidarr-config .jla-user{grid-template-columns:1fr;gap:8px}#jellylidarr-config .jla-footer{align-items:stretch;flex-direction:column}}

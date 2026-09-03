@@ -6,25 +6,26 @@
   <title>Music Requests</title>
 </head>
 <body>
-<div id="jellylidarr" class="jl-page page type-interior" data-role="page"><script>(function(){const id='jellylidarr-portal-css';document.getElementById(id)?.remove();const link=document.createElement('link');link.id=id;link.rel='stylesheet';link.href=ApiClient.getUrl('configurationpage',{name:'jellylidarr-style',v:'1.0.0.7'});document.head.appendChild(link)}());</script>
+<div id="jellylidarr" class="jl-page page type-interior" data-role="page"><script>(function(){const id='jellylidarr-portal-css';document.getElementById(id)?.remove();const link=document.createElement('link');link.id=id;link.rel='stylesheet';link.href=ApiClient.getUrl('JellyLidarr/assets/style.css',{v:'1.0.0.8'});document.head.appendChild(link)}());</script>
   <main class="jl-shell">
     <header class="jl-header">
-      <div><p class="jl-kicker">JELLYLIDARR</p><h1>Find your next listen.</h1><p>Search your library and request missing music.</p></div>
+      <div><p class="jl-kicker">JELLYLIDARR · 1.0.0.8</p><h1>Music Requests</h1><p>Discover artists. Complete your collection.</p></div>
       <div class="jl-actions"><button id="jl-admin" class="jl-ghost" type="button" hidden>Settings</button><button id="jl-refresh" class="jl-ghost" type="button">Refresh</button></div>
     </header>
+    <div class="jl-summary" aria-label="My request summary"><div><span>MY REQUESTS</span><strong id="jl-count-all">—</strong><small>Your request history</small></div><div><span>IN PROGRESS</span><strong id="jl-count-active">—</strong><small>Searching, downloading or importing</small></div><div><span>READY TO LISTEN</span><strong id="jl-count-ready">—</strong><small>Available in Jellyfin</small></div></div>
     <nav class="jl-tabs" aria-label="Music requests">
-      <button class="active" data-tab="discover">Discover</button><button data-tab="mine">My requests</button><button data-tab="approval" id="jl-approval-tab" hidden>Approvals</button>
+      <button class="active" data-tab="discover" aria-pressed="true">Discover</button><button data-tab="mine" aria-pressed="false">My requests</button><button data-tab="approval" id="jl-approval-tab" aria-pressed="false" hidden>Approvals</button>
     </nav>
     <section id="jl-discover" class="jl-panel">
       <form id="jl-search-form" class="jl-search"><label class="sr-only" for="jl-term">Search music</label><input id="jl-term" minlength="2" required placeholder="Search artists or albums…" autocomplete="off"><select id="jl-kind" aria-label="Result type"><option value="">Everything</option><option value="Artist">Artists</option><option value="Album">Albums</option></select><button type="submit">Search</button></form>
-      <p id="jl-search-status" class="jl-status" role="status">Search Lidarr’s catalog and your Jellyfin library.</p><div id="jl-results" class="jl-grid"></div>
+      <p id="jl-search-status" class="jl-status" role="status">Search Lidarr’s catalog and your Jellyfin library.</p><div id="jl-results" class="jl-grid"></div><div id="jl-empty" class="jl-empty"><span aria-hidden="true">♫</span><h2>Your next album starts here</h2><p>Search an artist or album. Owned music opens in Jellyfin;<br>missing music can be requested based on your permissions.</p></div>
     </section>
     <section id="jl-mine" class="jl-panel" hidden><h2>My requests</h2><div id="jl-mine-list" class="jl-list"></div></section>
     <section id="jl-approval" class="jl-panel" hidden><h2>Approval queue</h2><div id="jl-approval-list" class="jl-list"></div></section>
   </main>
   <dialog id="jl-confirm"><form method="dialog"><h2>Request artist?</h2><p id="jl-confirm-text"></p><div class="jl-actions"><button value="cancel" class="jl-ghost">Cancel</button><button id="jl-confirm-submit" value="confirm">Request artist</button></div></form></dialog>
   <div id="jl-toast" role="status" aria-live="polite"></div>
-  <script src="configurationpage?name=jellylidarr-app"></script>
+  <script>(function(){const script=document.createElement('script');script.src=ApiClient.getUrl('JellyLidarr/assets/app.js',{v:'1.0.0.8'});document.getElementById('jellylidarr').appendChild(script)}());</script>
 </div>
 </body>
 </html>
