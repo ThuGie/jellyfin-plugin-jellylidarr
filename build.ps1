@@ -6,7 +6,9 @@ $artifactRoot = Join-Path $projectRoot "artifacts"
 $publishRoot = Join-Path $artifactRoot "publish"
 $packageRoot = Join-Path $artifactRoot "package"
 dotnet test (Join-Path $projectRoot "JellyLidarr.sln") --configuration $Configuration
+if ($LASTEXITCODE -ne 0) { throw 'Tests failed; package will not be published.' }
 dotnet publish (Join-Path $projectRoot "src/Jellyfin.Plugin.JellyLidarr/Jellyfin.Plugin.JellyLidarr.csproj") --configuration $Configuration --output $publishRoot --no-self-contained
+if ($LASTEXITCODE -ne 0) { throw 'Plugin build failed.' }
 New-Item -ItemType Directory -Force -Path $packageRoot | Out-Null
 $resolvedArtifacts = [IO.Path]::GetFullPath($artifactRoot).TrimEnd([IO.Path]::DirectorySeparatorChar) + [IO.Path]::DirectorySeparatorChar
 $resolvedPackage = [IO.Path]::GetFullPath($packageRoot)

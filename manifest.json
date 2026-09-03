@@ -10,7 +10,7 @@
     "versions": [
       {
         "version": "1.0.0.7",
-        "changelog": "Fix Lidarr connection-test JSON parsing and load both page stylesheets using Jellyfin's base-path-safe runtime pattern.",
+        "changelog": "Fix connection-test JSON parsing and stylesheet loading. Release archive verified; catalog checksum corrected.",
         "targetAbi": "10.11.11.0",
         "sourceUrl": "https://github.com/ThuGie/jellyfin-plugin-jellylidarr/releases/download/v1.0.0.7/jellylidarr_1.0.0.7.zip",
         "checksum": "372CD8F5C31A368E8999D6B00B0A0901",
