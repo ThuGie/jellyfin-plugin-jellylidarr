@@ -13,7 +13,7 @@
         "changelog": "Fix Lidarr connection-test JSON parsing and load both page stylesheets using Jellyfin's base-path-safe runtime pattern.",
         "targetAbi": "10.11.11.0",
         "sourceUrl": "https://github.com/ThuGie/jellyfin-plugin-jellylidarr/releases/download/v1.0.0.7/jellylidarr_1.0.0.7.zip",
-        "checksum": "UPDATED_BY_RELEASE_WORKFLOW",
+        "checksum": "372CD8F5C31A368E8999D6B00B0A0901",
         "timestamp": "2026-09-03T03:00:00Z"
       },
       {
