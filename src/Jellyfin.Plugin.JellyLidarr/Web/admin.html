@@ -1,8 +1,8 @@
 <!doctype html><html><head><title>JellyLidarr</title></head><body>
 <div id="jellylidarr-config" class="page type-interior pluginConfigurationPage" data-role="page">
-<script>(function(){document.getElementById('jellylidarr-admin-css')?.remove();const link=document.createElement('link');link.id='jellylidarr-admin-css';link.rel='stylesheet';link.href=ApiClient.getUrl('JellyLidarr/assets/admin.css',{v:'1.0.0.9'});document.head.appendChild(link)}());</script>
+<script>(function(){document.getElementById('jellylidarr-admin-css')?.remove();const link=document.createElement('link');link.id='jellylidarr-admin-css';link.rel='stylesheet';link.href=ApiClient.getUrl('JellyLidarr/assets/admin.css',{v:'1.0.0.10'});document.head.appendChild(link)}());</script>
 <div data-role="content" class="jla-shell">
-  <header class="jla-header"><div><div class="jla-eyebrow">JELLYFIN · MUSIC INTEGRATION</div><h1>JellyLidarr <small>1.0.0.9</small></h1><p>One music library. More to discover.</p></div><button type="button" class="jla-secondary" id="jla-open">Music Requests →</button></header>
+  <header class="jla-header"><div><div class="jla-eyebrow">JELLYFIN · MUSIC INTEGRATION</div><h1>JellyLidarr <small>1.0.0.10</small></h1><p>One music library. More to discover.</p></div><button type="button" class="jla-secondary" id="jla-open">Music Requests →</button></header>
   <div id="jla-status" class="jla-notice" role="status" aria-live="polite">Loading configuration…</div>
   <nav class="jla-tabs" aria-label="Settings sections"><button type="button" data-section="connection" aria-pressed="true">Connection &amp; downloads</button><button type="button" data-section="permissions" aria-pressed="false">User permissions</button></nav>
   <form id="jla-form">
@@ -26,5 +26,5 @@
     <footer class="jla-footer"><span id="jla-save-hint">Load connection options before saving.</span><button id="jla-save" type="submit" disabled>Save configuration</button></footer>
   </form>
 </div>
-<script>(function(){const s=document.createElement('script');s.src=ApiClient.getUrl('JellyLidarr/assets/admin.js',{v:'1.0.0.9'});s.onerror=function(){document.getElementById('jla-status').textContent='Could not load settings script. Check server logs.'};document.getElementById('jellylidarr-config').appendChild(s)}());</script>
+<script>(function(){const s=document.createElement('script');s.src=ApiClient.getUrl('JellyLidarr/assets/admin.js',{v:'1.0.0.10'});s.onerror=function(){document.getElementById('jla-status').textContent='Could not load settings script. Check server logs.'};document.getElementById('jellylidarr-config').appendChild(s)}());</script>
 </div></body></html>

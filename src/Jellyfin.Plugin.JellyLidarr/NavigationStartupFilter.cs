@@ -44,7 +44,7 @@ public sealed class NavigationStartupFilter : IStartupFilter
     {
         var end = html.LastIndexOf("</body>", StringComparison.OrdinalIgnoreCase);
         if (end < 0 || html.Contains("id=\"jellylidarr-navigation\"", StringComparison.Ordinal)) return html;
-        var source = WebUtility.HtmlEncode(prefix.TrimEnd('/') + "/JellyLidarr/assets/navigation.js?v=1.0.0.9");
+        var source = WebUtility.HtmlEncode(prefix.TrimEnd('/') + "/JellyLidarr/assets/navigation.js?v=1.0.0.10");
         return html.Insert(end, $"<script id=\"jellylidarr-navigation\" defer src=\"{source}\"></script>");
     }
 }

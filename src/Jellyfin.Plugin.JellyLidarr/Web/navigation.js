@@ -2,8 +2,18 @@
   'use strict';
   if (window.jellyLidarrNavigationLoaded) return;
   window.jellyLidarrNavigationLoaded = true;
+  // Load header styling immediately, before the portal stylesheet is requested.
+  // Keep foreground/background paired so Jellyfin themes cannot mix them.
+  const headerStyle=document.createElement('style');
+  headerStyle.textContent=`
+    #jl-header-link { appearance:none; background:#20252c !important; color:#fff !important; border:1px solid #73808f; border-radius:6px; font:inherit; font-size:13px; line-height:1.4; padding:8px 12px; margin:0 8px; cursor:pointer; box-shadow:none; text-shadow:none; opacity:1; }
+    #jl-header-link:hover { background:#343e4b !important; color:#fff !important; }
+    #jl-header-link:active { background:#151a21 !important; color:#fff !important; }
+    #jl-header-link:focus-visible { outline:3px solid #00a4dc; outline-offset:3px; }
+  `;
+  document.head.append(headerStyle);
   let pending = false;
-  const asset = name => ApiClient.getUrl('JellyLidarr/assets/' + name, {v:'1.0.0.9'});
+  const asset = name => ApiClient.getUrl('JellyLidarr/assets/' + name, {v:'1.0.0.10'});
   function ensureStyle() {
     if(document.getElementById('jellylidarr-portal-css')) return;
     const link=document.createElement('link');link.id='jellylidarr-portal-css';link.rel='stylesheet';link.href=asset('style.css');document.head.append(link);
@@ -43,7 +53,7 @@
     if(link)return;
     const header=document.querySelector('.headerRight');
     if(!header)return;
-    const button=document.createElement('button');button.id='jl-header-link';button.type='button';button.className='headerButton emby-button';button.title='Music Requests';button.setAttribute('aria-label','Music Requests');
+    const button=document.createElement('button');button.id='jl-header-link';button.type='button';button.title='Music Requests';button.setAttribute('aria-label','Music Requests');
     button.textContent='Music Requests';button.style.fontSize='13px';button.style.padding='8px 12px';button.onclick=openPortal;header.prepend(button);
   }
   let scheduled=false;
