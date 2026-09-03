@@ -9,6 +9,14 @@
     "imageUrl": "https://raw.githubusercontent.com/ThuGie/jellyfin-plugin-jellylidarr/main/Jellyfin.Plugin.JellyLidarr.png?v=2",
     "versions": [
       {
+        "version": "1.0.0.8",
+        "changelog": "See release notes for 1.0.0.8.",
+        "targetAbi": "10.11.11.0",
+        "sourceUrl": "https://github.com/ThuGie/jellyfin-plugin-jellylidarr/releases/download/v1.0.0.8/jellylidarr_1.0.0.8.zip",
+        "checksum": "6F46A36887091DE1BAFACDCCA0DD7418",
+        "timestamp": "2026-09-03T09:47:58Z"
+      },
+      {
         "version": "1.0.0.7",
         "changelog": "Fix connection-test JSON parsing and stylesheet loading. Release archive verified; catalog checksum corrected.",
         "targetAbi": "10.11.11.0",
